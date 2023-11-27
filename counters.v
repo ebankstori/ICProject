@@ -1,28 +1,24 @@
-module counters (
-	input wire clk, // clock input
-	input wire rst, // reset input
-	output reg [2:0] dice1_out, // dice 1 output
-	output reg [2:0] dice2_out  // dice 2 output
-);
+module counters (clk, rst, dice1_out, dice2_out);
+    input wire clk; // clock input
+    input wire rst; // reset input
+    output reg [2:0] dice1_out; // dice 1 output
+    output reg [2:0] dice2_out;  // dice 2 output
 
-	reg [15:0] counter1; // counter for dice 1
-	reg [15:0] counter2; // counter for dice 2
-	
-	always @(posedge clk or posedge rst) begin
-		if (rst) begin
-			// initial clock values
-			counter1 <= 3'b001;
-			counter2 <= 3'b010;
-		end else begin
-			// incrementing on each clock edge
-			counter1 <= counter1 + 1;
-			counter2 <= counter2 + 1;
-		end
-	end
-	
-	always @* begin // mapping 3 bit counters to 1-6 range
-		dice1_out = counter1 + 1;
-		dice2_out = counter2 + 1;
-	end
-	
+    reg [15:0] lfsr; // 16-bit linear feedback shift register
+
+    always @(posedge clk or posedge rst) begin 
+	 // trigger on the + clock edge or + edge of rst signal
+        if (rst) begin
+            lfsr <= 16'hACE1; // if rst, then LFSR is initialized to 16'hACE1
+        end else begin // if not rst...
+            lfsr[0] <= lfsr[0] ^ lfsr[2] ^ lfsr[3] ^ lfsr[5]; // LFSR is shifted to the left
+            lfsr[15:1] <= lfsr[14:0]; // entire LFSR is shifted left and updated
+        end
+    end
+
+    always @* begin // combinational always: block triggers whenever any input changes
+        dice1_out = lfsr[3:1] + 1; // extract 3:1 bits from LFSR and increment by 1
+        dice2_out = lfsr[7:5] + 1; // extract 7:5 bits from LFSR and increment by 1
+    end
+
 endmodule
