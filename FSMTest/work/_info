@@ -1,0 +1,145 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d//Mac/Home/Documents/School/Fall2023/ICDesign/ICProject/FSMTest
+vAdder
+Z1 !s110 1701112695
+!i10b 1
+!s100 ;P_UYkJhXHPH`zGMccWDJ3
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IMA_fC5G269>YkaOT9UzhX1
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1699993042
+8../Adder.v
+F../Adder.v
+!i122 4
+L0 1 7
+Z4 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z5 !s108 1701112695.000000
+Z6 !s107 ../counters.v|../bcd7seg.v|../TestLogic.v|../FSM.v|../Adder.v|
+Z7 !s90 -reportprogress|300|../Adder.v|../FSM.v|../TestLogic.v|../bcd7seg.v|../counters.v|
+!i113 1
+Z8 tCvgOpt 0
+n@adder
+vbcd7seg
+R1
+!i10b 1
+!s100 _3W1]d:=1QiLmg<2c<mMo2
+R2
+I4B><FOT7Ol:`TQDCY=?EZ1
+R3
+R0
+w1643491302
+8../bcd7seg.v
+F../bcd7seg.v
+!i122 4
+L0 1 32
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+vcounters
+R1
+!i10b 1
+!s100 l`]Io^@I`Ki[HB7cL1GFW2
+R2
+IBka0>iJDFbk]99?hfN=>z0
+R3
+R0
+w1701112476
+8../counters.v
+F../counters.v
+!i122 4
+L0 1 29
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+vfsm
+R1
+!i10b 1
+!s100 @zjYG567@cH5B_0`8QAEa0
+R2
+I2TYQ8B7e23_f=mNMJTnOA2
+R3
+R0
+w1701111993
+8../FSM.v
+F../FSM.v
+!i122 4
+L0 1 46
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+vtestbench
+R1
+!i10b 1
+!s100 jJ=EnaVaHI`f;zhb9V=U^0
+R2
+I_FVcdoPk@^WZFo>o?3jWL2
+R3
+R0
+w1701112664
+8testbench.v
+Ftestbench.v
+!i122 5
+L0 3 20
+R4
+r1
+!s85 0
+31
+R5
+!s107 testbench.v|
+!s90 -reportprogress|300|testbench.v|
+!i113 1
+R8
+vTestLogic
+R1
+!i10b 1
+!s100 GY9XNPQ`XJBT5@[dHj?Mg0
+R2
+IIPZo0CT6?5088cWE7g5_:3
+R3
+R0
+w1701110309
+8../TestLogic.v
+F../TestLogic.v
+!i122 4
+L0 1 35
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+n@test@logic

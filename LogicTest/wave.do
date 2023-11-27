@@ -3,6 +3,7 @@ quietly WaveActivateNextPane {} 0
 add wave -noupdate /testbench/clk
 add wave -noupdate -radix hexadecimal /testbench/state
 add wave -noupdate -radix unsigned /testbench/sum
+add wave -noupdate -radix unsigned /testbench/point
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {49865 ps} 0}
 quietly wave cursor active 1
