@@ -8,27 +8,28 @@ module DiceGame(
     output loss_1 // output red LED for lose
 );
 
-reg reg_seg_disp1;
-reg reg_seg_disp2;
+reg [6:0]reg_seg_disp1;
+reg [6:0]reg_seg_disp2;
 reg reg_win;
 reg reg_loss;
 
-assign seg_disp1 = reg_seg_disp1;
-assign seg_disp2 = reg_seg_disp2;
-assign win_1 = reg_win;
-assign loss_1 = reg_loss;
+//assign seg_disp1 = reg_seg_disp1;
+//assign seg_disp2 = reg_seg_disp2;
+// assign win_1 = reg_win;
+// assign loss_1 = reg_loss;
 
 fsm uut (
 	.clock(clock),
-	.win(reg_win),
-	.loss(reg_loss),
+	.win(win_1),
+	.loss(loss_1),
 	.reset(reset),
 	.roll(roll),
-	.disp1(reg_seg_disp1),
-	.disp2(reg_seg_disp2)
+	.disp1(seg_disp1),
+	.disp2(seg_disp2)
 );
 
-    always @(posedge clock) begin
+
+    /* always @(posedge clock) begin
         // display values only when the enter/roll button is released
         if (~roll) begin
 				reg_seg_disp1 <= disp1;
@@ -44,6 +45,6 @@ fsm uut (
             reg_win <= 0;
             reg_loss <= 0;
         end
-    end
+    end*/
 
 endmodule

@@ -17,13 +17,13 @@ module bcd7seg (bcd, display);
         
 	always @(bcd)
 	case (bcd)
-		3'h0: display = 7'b0000001;
-		3'h1: display = 7'b1001111;
-		3'h2: display = 7'b0010010;
-		3'h3: display = 7'b0000110;
-		3'h4: display = 7'b1001100;
-		3'h5: display = 7'b0100100;
-		3'h6: display = 7'b1100000;
-		default: display = 7'bx;
+			0: display = 7'b1000000;
+			1: display = 7'b1111001;
+			2: display = 7'b0100100;
+			3: display = 7'b0110000;
+			4: display = 7'b0011001;
+			5: display = 7'b0010010;
+			6: display = 7'b0000010;
+		default: display = 7'b0000000;
 	endcase
 endmodule

@@ -14,7 +14,7 @@ module fsm(clock, roll, reset, disp1, disp2, win, loss);
 	parameter init = 2'b00, reroll = 2'b01, wins = 2'b10, loses = 2'b11;
 	
 	assign win = win_LED;
-	assign lose = lose_LED;
+	assign loss = lose_LED;
 	
 	always @(roll_sum) begin
 		point = test_sum;
