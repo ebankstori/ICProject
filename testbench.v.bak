@@ -1,0 +1,119 @@
+`timescale 1ns/1ns
+
+module testbench;
+
+  // Parameters
+  parameter CLOCK_PERIOD = 10; // Clock period in ns
+
+  // Signals
+  reg clk;
+  reg rst;
+  reg enter;
+
+  wire [6:0] segdisp_1;
+  wire [6:0] segdisp_2;
+  wire win;
+  wire lose;
+
+  // Instantiate DiceGame module
+  DiceGame uut (
+    .enter(enter),
+    .reset(rst),
+    .clk(clk),
+    .rst(rst),
+    .segdisp_1(segdisp_1),
+    .segdisp_2(segdisp_2),
+    .win(win),
+    .lose(lose)
+  );
+
+  // Clock generation
+  always #((CLOCK_PERIOD / 2)) clk = ~clk;
+
+  // Initial values
+  initial begin
+    clk = 0;
+    rst = 1;
+    enter = 0;
+
+    // Apply reset
+    #10 rst = 0;
+
+    // Test case 1: Normal game
+    #20 enter = 1;
+    #30 enter = 0;
+    #100 enter = 1;
+    #110 enter = 0;
+    #200 enter = 1;
+    #210 enter = 0;
+    #300 enter = 1;
+    #310 enter = 0;
+    #400 enter = 1;
+    #410 enter = 0;
+    #500 enter = 1;
+    #510 enter = 0;
+    #600 enter = 1;
+    #610 enter = 0;
+    #700 enter = 1;
+    #710 enter = 0;
+    #800 enter = 1;
+    #810 enter = 0;
+    #900 enter = 1;
+    #910 enter = 0;
+    #1000 enter = 1;
+    #1010 enter = 0;
+
+    // Test case 2: Win condition
+    #10 rst = 1;
+    #20 enter = 1;
+    #30 enter = 0;
+    #100 enter = 1;
+    #110 enter = 0;
+    #200 enter = 1;
+    #210 enter = 0;
+    #300 enter = 1;
+    #310 enter = 0;
+    #400 enter = 1;
+    #410 enter = 0;
+    #500 enter = 1;
+    #510 enter = 0;
+    #600 enter = 1;
+    #610 enter = 0;
+    #700 enter = 1;
+    #710 enter = 0;
+    #800 enter = 1;
+    #810 enter = 0;
+    #900 enter = 1;
+    #910 enter = 0;
+    #1000 enter = 1;
+    #1010 enter = 0;
+
+    // Test case 3: Lose condition
+    #10 rst = 1;
+    #20 enter = 1;
+    #30 enter = 0;
+    #100 enter = 1;
+    #110 enter = 0;
+    #200 enter = 1;
+    #210 enter = 0;
+    #300 enter = 1;
+    #310 enter = 0;
+    #400 enter = 1;
+    #410 enter = 0;
+    #500 enter = 1;
+    #510 enter = 0;
+    #600 enter = 1;
+    #610 enter = 0;
+    #700 enter = 1;
+    #710 enter = 0;
+    #800 enter = 1;
+    #810 enter = 0;
+    #900 enter = 1;
+    #910 enter = 0;
+    #1100 enter = 1;
+    #1110 enter = 0;
+
+    #2000 $finish;
+  end
+
+endmodule
