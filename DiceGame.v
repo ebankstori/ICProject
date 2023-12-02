@@ -1,50 +1,37 @@
 module DiceGame(
-    input clock,
+    input clock, // input clock
 	 input reset, // input reset
-    input roll, // input starting roll
+    input roll, // input roll
     output [6:0] seg_disp1, //output first 7 segment display
     output [6:0] seg_disp2, // output second 7 segment display
     output win_1, // output green LED for win
-    output loss_1 // output red LED for lose
+    output loss_1, // output red LED for lose
+	 output debuge,
+	 output debugr
 );
 
-reg [6:0]reg_seg_disp1;
-reg [6:0]reg_seg_disp2;
-reg reg_win;
-reg reg_loss;
+reg enter, rst;
+assign debuge = enter;
+assign debugr = rst;
 
-//assign seg_disp1 = reg_seg_disp1;
-//assign seg_disp2 = reg_seg_disp2;
-// assign win_1 = reg_win;
-// assign loss_1 = reg_loss;
+always @(!roll) begin
+	enter = ! roll;
+end
+	
+always @(!reset) begin
+	rst = !reset;
+end
 
-fsm uut (
+FSM uut (
 	.clock(clock),
 	.win(win_1),
 	.loss(loss_1),
 	.reset(reset),
-	.roll(roll),
+	.roll(enter),
 	.disp1(seg_disp1),
 	.disp2(seg_disp2)
 );
 
 
-    /* always @(posedge clock) begin
-        // display values only when the enter/roll button is released
-        if (~roll) begin
-				reg_seg_disp1 <= disp1;
-            reg_seg_disp2 <= disp2; 
-        end
-    end
-// outside of always block put assign and net (output) = register, and then have seperate register 
-    always @(posedge clock) begin
-        // reset
-        if (reset) begin
-				reg_win <= win;
-				reg_loss <= loss;
-            reg_win <= 0;
-            reg_loss <= 0;
-        end
-    end*/
 
 endmodule

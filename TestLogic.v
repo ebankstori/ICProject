@@ -1,6 +1,6 @@
-module TestLogic(sum, op, reset, point);
+module TestLogic(roll, sum, op, reset, point);
 	input [3:0]sum, point;
-	input reset;
+	input reset, roll;
 	output [1:0]op;
 	
 	reg [1:0]state, prev_state;
@@ -11,25 +11,26 @@ module TestLogic(sum, op, reset, point);
 		state = init;
 	end
 	
-	always @(sum, reset) begin
-		//reset state
-		if(reset) state = init;
 
-		//determine state if win/loss based on roll
-		case(state)
+		
+	always @(sum) begin
+		if (!reset) state = init;
+		
+        	case(state)
 			init: begin
-				if(sum == 7 | sum == 11 ) state = win;
-				else if(sum == 2 | sum == 3 | sum == 12) state = lose;
+				if(sum == 4'd7 | sum == 4'd11 ) state = win;
+				else if(sum == 4'd2 | sum == 4'd3 | sum == 4'd12) state = lose;
 				else state = reroll;
-			end 
+		   end 
 			win: state = init;
 			lose: state = init;
 			reroll: begin
 				if(sum == point) state = win;
-				else if(sum == 7) state = lose;
+				else if(sum == 4'd7) state = lose;
 				else state = reroll;
 			end
-		endcase
+			endcase
 	end
+
 	
 endmodule

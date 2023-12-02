@@ -6,9 +6,9 @@ module counters (clk, rst, dice1_out, dice2_out);
 
     reg [15:0] lfsr; // 16-bit linear feedback shift register
 
-    always @(posedge clk) begin 
+    always @(posedge clk or posedge rst) begin 
 	 // trigger on the + clock edge or + edge of rst signal
-        if (!rst) begin
+        if (rst) begin
             lfsr <= 16'hACE1; // if rst, then LFSR is initialized to 16'hACE1
         end else begin // if not rst...
             lfsr[0] <= lfsr[0] ^ lfsr[2] ^ lfsr[3] ^ lfsr[5]; // LFSR is shifted to the left
@@ -16,11 +16,9 @@ module counters (clk, rst, dice1_out, dice2_out);
         end
     end
 
-    always @(posedge clk) begin // combinational always: block triggers whenever any input changes
+    always @* begin // combinational always: block triggers whenever any input changes
         dice1_out = lfsr[3:1] + 1; // extract 3:1 bits from LFSR and increment by 1
         dice2_out = lfsr[7:5] + 1; // extract 7:5 bits from LFSR and increment by 1
     end
-	 
-	 
 
 endmodule
