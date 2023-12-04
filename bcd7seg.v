@@ -28,3 +28,7 @@ always @(bcd)
 		default: display = 7'b0111111;
 	endcase
 endmodule
+
+
+
+

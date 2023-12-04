@@ -17,8 +17,8 @@ module counters (clk, rst, dice1_out, dice2_out);
     end
 
     always @(posedge clk) begin // combinational always: block triggers whenever any input changes
-        dice1_out = lfsr[3:1] + 1; // extract 3:1 bits from LFSR and increment by 1
-        dice2_out = lfsr[7:5] + 1; // extract 7:5 bits from LFSR and increment by 1
+        dice1_out = (lfsr[3:1] % 6) + 1; // extract 3:1 bits from LFSR and increment by 1
+        dice2_out = (lfsr[7:5] % 6) + 1; // extract 7:5 bits from LFSR and increment by 1
     end
 	 
 	 
