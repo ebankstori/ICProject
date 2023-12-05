@@ -8,7 +8,7 @@ module counters (clk, rst, dice1_out, dice2_out);
 
     always @(posedge clk) begin 
 	 // trigger on the + clock edge or + edge of rst signal
-        if (!rst) begin
+        if (rst) begin
             lfsr <= 16'hACE1; // if rst, then LFSR is initialized to 16'hACE1
         end else begin // if not rst...
             lfsr[0] <= lfsr[0] ^ lfsr[2] ^ lfsr[3] ^ lfsr[5]; // LFSR is shifted to the left
